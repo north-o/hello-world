@@ -11,6 +11,7 @@ from kivy.uix.label import Label
 class SoundBoard(Widget):
     screamsound = SoundLoader.load("./sounds/Scream.wav")
     firesound = SoundLoader.load("./sounds/Crackling_Fire.wav")
+    jackhammersound = SoundLoader.load("./sounds/jackhammer4.wav")
     grid_layout = GridLayout(cols=3)
 
 
@@ -21,9 +22,9 @@ class SoundBoard(Widget):
 
     def setLayout(self):
         self.size = (1500, 1000)
-        
+
         with self.canvas:
-            Color(0.7451, 1.0, 1.0, 1.0)
+            Color(.532345, 1.0, .742, 1.0)
             Rectangle(size=self.size)
         
         sound_board_layout = AnchorLayout()
@@ -40,7 +41,12 @@ class SoundBoard(Widget):
         title_layout.spacing = 10
 
         title_label = Label()
-        title_label.color = [0.89, 0.792, 1.61, 1.0]
+        title_label.text = "hello"
+        title_label.color = [.6, .2, 1, .5]
+        title_label.font_size = 50
+        title_label.font_name = "C:\\Windows\\Fonts\\Arial"
+        title_label.size_hint = (1, 1)
+        title_layout.add_widget(title_label)
 
         self.set_sounds()
 
@@ -63,10 +69,19 @@ class SoundBoard(Widget):
         fire_button.bind(on_press=self.fire_button_callback)
         self.grid_layout.add_widget(fire_button)
 
+    def set_jackhammer_sound(self):
+        jackhammer_button = Button()
+        jackhammer_button.text = "jackhammer"
+        jackhammer_button.height = 50
+        jackhammer_button.bind(on_press=self.jackhammer_button_callback)
+        self.grid_layout.add_widget(jackhammer_button)
+
     def set_sounds(self):
         self.set_scream_sound()
 
         self.set_fire_sound()
+
+        self.set_jackhammer_sound()
 
     def scream_button_callback(self, play):
         return self.play_sound("scream")
@@ -74,9 +89,14 @@ class SoundBoard(Widget):
     def fire_button_callback(self, play):
         return self.play_sound("Crackling_Fire")
 
+    def jackhammer_button_callback(self, play):
+        return self.play_sound("jackhammer4")        
+
     def play_sound(self, sound_name):
         if (sound_name == "scream"):
             self.screamsound.play()
         elif(sound_name == "Crackling_Fire"):
             self.firesound.play()
+        elif(sound_name == "jackhammer4"):
+            self.jackhammersound.play()
 
