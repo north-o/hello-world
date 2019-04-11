@@ -16,6 +16,7 @@ class SoundBoard(Widget):
     firesound = SoundLoader.load("./sounds/Crackling_Fire.wav")
     jackhammersound = SoundLoader.load("./sounds/jackhammer4.wav")
     airplanesound = SoundLoader.load("./sounds/Airplane.wav")
+    title_layout = BoxLayout()
     grid_layout = GridLayout(cols=3)
     is_looping_on = False
 
@@ -40,35 +41,49 @@ class SoundBoard(Widget):
         sound_board_layout.size_hint = (1.0, 1.0)
         sound_board_layout.spacing = 50
 
-        title_layout = BoxLayout()
-        title_layout.orientation = "vertical"
-        title_layout.size_hint = (1.0, 1.0)
-        title_layout.spacing = 10
+        self.title_layout.orientation = "vertical"
+        self.title_layout.size_hint = (1.0, 1.0)
+        self.title_layout.spacing = 10
 
         title_label = Label()
-        title_label.text = "Soundboard :)"
+        title_label.text = "Soundboard"
         title_label.color = [.6, .2, 1, .5]
         title_label.font_size = 50
         title_label.font_name = "C:\\Windows\\Fonts\\Arial"
         title_label.size_hint = (1, 1)
-        title_layout.add_widget(title_label)
+        self.title_layout.add_widget(title_label)
 
         self.set_settings_layout()
 
         self.set_sounds()
 
-        title_layout.add_widget(self.grid_layout)
-        sound_board_layout.add_widget(title_layout)
+        self.title_layout.add_widget(self.grid_layout)
+        sound_board_layout.add_widget(self.title_layout)
 
         self.add_widget(sound_board_layout)
 
     def set_settings_layout(self):
         looping_switch_layout = BoxLayout()
+        looping_switch_layout.spacing = 2
+        looping_switch_layout.size_hint = (.2, 1)
         looping_switch_layout.orientation = "horizontal"
+
+        looping_switch_label = Label()
+        looping_switch_label.color = [.6, .2, 1, .5]
+        looping_switch_label.text = "Loop Sound"
+        looping_switch_label.size_hint = (.3, 1)
+        looping_switch_layout.add_widget(looping_switch_label)
 
         looping_switch = Switch(active=False)
         looping_switch.bind(active=self.toggle_looping_sound)
-        self.grid_layout.add_widget(looping_switch)
+        looping_switch.size_hint = (.3, 1)
+        looping_switch_layout.add_widget(looping_switch)
+
+        empty_label = Label()
+        empty_label.size_hint = (.4, 1)
+        looping_switch_layout.add_widget(empty_label)
+
+        self.title_layout.add_widget(looping_switch_layout)
 
     def set_scream_sound(self):
         scream_button = Button()
