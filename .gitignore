@@ -2,3 +2,8 @@ sound/__pycache__/SoundBoard.cpython-36.pyc
 sound/kivy/_clock.pyx
 sound/__pycache__/SoundBoard.cpython-36.pyc
 .vscode/launch.json
+ponggame/__pycache__/WelcomeScreen.cpython-36.pyc
+ponggame/__pycache__/SettingsScreen.cpython-36.pyc
+ponggame/__pycache__/PongGameScreen.cpython-36.pyc
+ponggame/__pycache__/PongGameApp.cpython-36.pyc
+ponggame/.vscode/launch.json
