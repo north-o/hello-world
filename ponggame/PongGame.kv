@@ -1,0 +1,72 @@
+#:kivy 1.10.1
+
+<WelcomeScreen>:
+    id: welcome_screen
+    play_image_button: play_image_button_id
+    settings_image_button: settings_image_button_id
+    AnchorLayout:
+
+        anchor_x: "center"
+
+
+
+        BoxLayout:
+
+            orientation: "vertical"
+
+            size_hint: (1, 1)
+
+            spacing: 10
+
+            Image:
+                source:"images\TITLE2.png"
+        
+                size_hint_y: .3
+
+            #Label:
+
+                #size_hint_y: .3
+
+                #text: "Pong Game"
+
+                #valign: "bottom"
+
+                #bold: True
+
+                #font_size: 50
+
+                #padding: 0, 0
+
+
+
+                AnchorLayout:
+
+                    anchor_x: "center"
+                
+                    size_hint_y: .7
+
+
+                    BoxLayout:
+
+                        size_hint: 1, 1
+
+                        orientation: "horizontal"
+
+                        spacing: 10
+
+
+                        ImageButton:
+                            id: play_image_button_id
+                            source: "./images/Start.png"
+                            size: self.parent.width, self.parent.height
+                            on_press: root.manager.current = "game_screen"
+
+                        ImageButton:
+                            id: settings_image_button_id
+                            source: "./images/Settings.png"
+                            size: (15, 15)
+                            on_press: root.manager.current = "settings_screen"
+
+
+
+        
