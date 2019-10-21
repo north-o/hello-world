@@ -1,5 +1,87 @@
 #:kivy 1.10.1
 
+<PongGameScreen>:
+    game_engine: pong_game_id
+
+    #Button:
+    #   text: "Home"
+    #   on_press root.manager.current
+
+    PongGamePy:
+        id: pong_game_id
+
+<PongBall>:
+    size: 50, 50
+    canvas.before:
+        Color:
+            rgba: self.color
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+<PongGamePy>:
+    ball: pong_ball
+    player1: player_left
+    player2: player_right
+    player1label: player_left
+    player2label: player_right
+
+    canvas:
+        Rectangle:
+            pos: self.center_x-5, 0
+            size: 10, self.height
+
+    Label:
+        id: player1label
+        canvas:
+            Color: 
+                rgba: self.color
+
+        font_size: 60
+        center_x: root.width / 4
+        top: root.top - 0.5
+        text: root.player_1_name
+
+    Label:
+        font_size: 70
+        center_x: root.width / 4
+        top: root.top - 70
+        text: str(root.player1.score)
+    Label:
+        id: player2label
+        canvas:
+            Color:
+                rgba: self.color
+        font_size: 60
+        center_x: root.width * 3 / 4
+        top: root.top - 0.5
+        text: root.player_2_name
+
+    Label:
+        font_size: 70
+        center_x: root.width * 3/4
+        top: root.top
+        text: str(root.player2.score)
+  
+    PongBall:
+        id: pong_ball
+        center: self.parent.center
+
+    PongPaddle:
+        id: player_left
+        x: root.x
+        center_y: root.center_y
+
+    PongPaddle:
+        id: player_right
+        x: root.width-self.width
+        center_y: root.center_y
+        
+   # Button: 
+   #     text: "Home"
+   #     on_press: root.manager.current = "welcome_screen"
+
+        
 <WelcomeScreen>:
     id: welcome_screen
     play_image_button: play_image_button_id
