@@ -8,7 +8,7 @@ class PongPaddle(Widget):
     This is the player1, player objects
     """
 
-    color = ListProperty([1, 1, 1, 1])
+    color = ListProperty([0, .784, 1, 1])
     paddle_1_sound = SoundLoader.load("./sounds/paddle_1.wav")
     paddle_2_sound = SoundLoader.load("./sounds/paddle_2.wav")
     score = NumericProperty(0)
@@ -32,5 +32,5 @@ class PongPaddle(Widget):
         if(is_player_1 is True):
             self.paddle_1_sound.play()
         else:
-            self.paddle_2_sound.player()
+            self.paddle_2_sound.play()
         

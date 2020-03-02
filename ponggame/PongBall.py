@@ -9,7 +9,7 @@ class PongBall(Widget):
     # passing in RGBA: Red, Green, Blue, Transparency (Alpha)
     color = ListProperty([0, .784, 1, 1])
 
-    speed_factor = 1.0
+    speed_factor = 1.35
 
     velocity_x = NumericProperty(0)
     velocity_y = NumericProperty(0)

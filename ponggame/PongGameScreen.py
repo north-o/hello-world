@@ -4,10 +4,10 @@ from PongGamePy import PongGamePy
 
 class PongGameScreen(Screen):
     player_1_name = "Player 1"
-    player_1_paddle_color = ListProperty(None)
+    player_1_paddle_color = ListProperty([0, 1, 0.9, 1])
     player_2_name = "Player 2"
-    player_2_paddle_color = ListProperty(None)
-    max_score = 6
+    player_2_paddle_color = ListProperty([1, 0, 0.6, 1])
+    max_score = 0
     pong_ball_color = ListProperty
     game_engine = ObjectProperty(None)
 

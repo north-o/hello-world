@@ -1,5 +1,138 @@
 #:kivy 1.10.1
 
+<SettingsScreen>:
+
+    max_score_widget: max_score_widget_id
+
+    player_1_name_widget: player_1_name_widget_id
+    player_1_paddle_color: player_1_paddle_color_id
+
+    player_2_name_widget: player_2_name_widget_id
+    player_2_paddle_color: player_2_paddle_color_id
+
+
+    pong_ball_color: pong_ball_color_id
+
+    title: "CONFIG"
+
+    size_hint: 1, 1
+
+
+
+    BoxLayout: 
+
+        orientation: "vertical"
+
+        spacing: 20
+
+
+
+        GridLayout: 
+        
+            size_hint_y: .8
+
+            cols: 2
+
+
+
+            Label:
+                text: "WINNING SCORE"
+                font_size: 25
+                halign: "center"
+
+            TextInput:
+                id: max_score_widget_id
+                text: "7"
+
+            Label:
+                text: "Player 1 Name"
+                font_size: 25
+                halign: "center"
+
+            TextInput:
+                id: player_1_name_widget_id
+                text: "Player 1"
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: root.player_1_label_color
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+
+                text: "Player 1 Paddle Color"
+                color: [1, 1, 1, 1]
+                font_size: 25
+                halign: "center"
+
+            CustomColorWheel:
+                id: player_1_paddle_color_id
+                size_hint: 1.0, 1.0
+                on_color: root.player_1_paddle_on_color(self.color)
+
+            Label:
+
+                text: "Player 2 Name"
+                font_size: 25
+                halign: "center"
+
+            TextInput:
+                id: player_2_name_widget_id
+                text: "Player 2"
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: root.player_2_label_color
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+
+                text: "Player 2 Paddle Color"
+                color: [1, 1, 1, 1]
+                font_size: 25
+                halign: "center"
+
+            CustomColorWheel:
+                id: player_2_paddle_color_id
+                size_hint: 1.0, 1.0
+                on_color: root.player_2_paddle_on_color(self.color)
+
+            Label:
+                canvas.before:
+                    Color:
+                        rgba: root.pong_ball_label_color
+                    Rectangle:
+                        pos:self.pos
+                        size:self.size
+                
+                text: "Pong Ball Color"
+                font_size: 25
+                halign: "center"
+
+            CustomColorWheel:
+                id: pong_ball_color_id
+                size_hint: 1.0, 1.0
+                on_color: root.pong_ball_on_color(self.color)
+
+        AnchorLayout:
+
+            anchor_x: "center"
+
+            size_hint: 1, .25
+
+            Button:
+
+                size_hint_x: 0.5
+
+                text: "Save changes"
+
+                on_press: root.save()
+
+    
+<CustomColorWheel>:
+
 <PongGameScreen>:
     game_engine: pong_game_id
 
@@ -15,9 +148,20 @@
     canvas.before:
         Color:
             rgba: self.color
+
         Ellipse:
             pos: self.pos
             size: self.size
+
+<PongPaddle>:
+    size: 25, 200
+    canvas:
+        Color:
+            rgba: self.color
+
+        Rectangle:
+            pos:self.pos
+            size:self.size
 
 <PongGamePy>:
     ball: pong_ball
@@ -60,7 +204,7 @@
     Label:
         font_size: 70
         center_x: root.width * 3/4
-        top: root.top
+        top: root.top - 70
         text: str(root.player2.score)
   
     PongBall:
